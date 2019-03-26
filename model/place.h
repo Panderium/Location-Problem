@@ -19,10 +19,23 @@ public:
     std::string getName();
 
     location getLocation();
+    float get_latitude();
+    float get_longitude();
+    int get_num_ville();
+    char get_type();
+    int get_besoin();
+
 
 private:
     std::string name;
     location loc;
+    int num_ville;
+    float latitude;
+    float longitude;
+    char type;
+    int besoin;
+
+
 };
 
 #endif //LOCATION_PROBLEM_PLACE_H

@@ -12,12 +12,14 @@ public:
     road();
 
     road(place city_a, place city_b);
+    void calcDist();
 
     ~road();
 
 private:
     place city_a;
     place city_b;
+    float distance;
 };
 
 #endif //LOCATION_PROBLEM_ROAD_H
