@@ -25,6 +25,11 @@ public:
     char get_type();
     int get_besoin();
 
+    void set_latitude(float lat);
+    void set_longitude(float lon);
+    void set_num_ville(int num);
+    void set_type(char type);
+    void set_besoin(int bes);
 
 private:
     std::string name;

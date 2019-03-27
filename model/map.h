@@ -19,6 +19,7 @@ public:
     virtual ~map();
 
 public:
+    map add_place(place p);
 
 private:
     std::vector<place> places;

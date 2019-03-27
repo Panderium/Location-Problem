@@ -5,11 +5,11 @@
 #ifndef LOCATION_PROBLEM_PARSE_H
 #define LOCATION_PROBLEM_PARSE_H
 
-#include "model/map.h"
+#include "../model/map.h"
 
 class Parse {
 public:
-    Parse(int argc, char **argv);
+    map Parser();
 private:
     map data;
 

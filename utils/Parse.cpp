@@ -6,9 +6,14 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
 using namespace std;
-Parse::Parse(int argc, char **argv){
-    ifstream fichier("data.txt");
+map Parse::Parser(){
+    map data;
+    ifstream fichier("C:/Users/camil/Documents/Polytech/UQAC/trimestre 2/Algorithmique/Location-Problem/data.txt");
 
     if(fichier, ios::in)
     {
@@ -19,7 +24,7 @@ Parse::Parse(int argc, char **argv){
             int z = s.find(',');
             string tamp = s.substr(0, z);
             //faire les sets
-            //ville.set_num_ville(tamp);
+            ville.set_num_ville(std::stoi(tamp));
             i = z;
             vector<string> tampon;
             while(i < s.length()) { // boucle jusqu'Ã  la fin de la ligne
@@ -28,23 +33,26 @@ Parse::Parse(int argc, char **argv){
                 { // pas de vigule trouvee, on en est donc au dernier élement
                     tamp =(s.substr(i,s.length()-1-i));
                     //faire les sets
-                    //ville.set_besoin(tamp);
+                    ville.set_besoin(std::stoi(tamp));
+                    i = s.length();
                     break;
                 }
                 else
                 { // il y a plusieurs effets secondaires Ã  traiter encore
                     tampon.push_back(s.substr(i, z));
-                    //cout << effects[i] << endl;
                     i = z;    // on fait avancer i de la taille de la chaine + l'espace et la virgule
                 }
 
             }
-       // ville.set_latitude(tampon[0]);
-       //ville.set_longitude(tampon[0]);
-
+        ville.set_latitude(std::strtof(tampon[0].c_str(),0));
+        ville.set_longitude(std::strtof(tampon[1].c_str(),0));
+            cout << ville.get_num_ville() << endl;
+            //cout << effects[i] << endl;
+            //cout << effects[i] << endl;
+        tampon.clear();
         }
-    //data.places.push_back(ville);
+    data.add_place(ville);
     }
     fichier.close();
-
+    return data;
 }
