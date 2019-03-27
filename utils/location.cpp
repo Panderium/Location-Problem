@@ -2,7 +2,7 @@
 // Created by panderium on 21/02/19.
 //
 
-#include "utils.h"
+#include "location.h"
 
 location::location() = default;
 

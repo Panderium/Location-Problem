@@ -7,15 +7,15 @@
 
 
 #include <string>
-#include "../utils/utils.h"
+#include "../utils/location.h"
 
-class headquater {
+class Headquater {
 public:
-    headquater();
+    Headquater();
 
-    headquater(std::string name);
+    Headquater(std::string name);
 
-    ~headquater();
+    ~Headquater();
 
     location getLocation();
 

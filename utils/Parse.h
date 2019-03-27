@@ -5,13 +5,13 @@
 #ifndef LOCATION_PROBLEM_PARSE_H
 #define LOCATION_PROBLEM_PARSE_H
 
-#include "../model/map.h"
+#include "../model/Map.h"
 
 class Parse {
 public:
-    map Parser();
+    Map Parser();
 private:
-    map data;
+    Map m_data;
 
 };
 

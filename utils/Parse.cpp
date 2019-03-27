@@ -11,13 +11,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 using namespace std;
-map Parse::Parser(){
-    map data;
+Map Parse::Parser(){
+    Map data;
     ifstream fichier("C:/Users/camil/Documents/Polytech/UQAC/trimestre 2/Algorithmique/Location-Problem/data.txt");
 
     if(fichier, ios::in)
     {
-        place ville;
+        Place ville;
         string s;
         while(getline(fichier,s)){
             int i = 0;
