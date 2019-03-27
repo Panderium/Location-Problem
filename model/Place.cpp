@@ -44,4 +44,32 @@ int Place::getM_besoin() const {
     return m_besoin;
 }
 
+void Place::setM_name(const std::string &m_name) {
+    Place::m_name = m_name;
+}
+
+void Place::setM_loc(const location &m_loc) {
+    Place::m_loc = m_loc;
+}
+
+void Place::setM_num_ville(int m_num_ville) {
+    Place::m_num_ville = m_num_ville;
+}
+
+void Place::setM_latitude(float m_latitude) {
+    Place::m_latitude = m_latitude;
+}
+
+void Place::setM_longitude(float m_longitude) {
+    Place::m_longitude = m_longitude;
+}
+
+void Place::setM_type(char m_type) {
+    Place::m_type = m_type;
+}
+
+void Place::setM_besoin(int m_besoin) {
+    Place::m_besoin = m_besoin;
+}
+
 Place::~Place() = default;

@@ -30,6 +30,20 @@ public:
 
     int getM_besoin() const;
 
+    void setM_name(const std::string &m_name);
+
+    void setM_loc(const location &m_loc);
+
+    void setM_num_ville(int m_num_ville);
+
+    void setM_latitude(float m_latitude);
+
+    void setM_longitude(float m_longitude);
+
+    void setM_type(char m_type);
+
+    void setM_besoin(int m_besoin);
+
     ~Place();
 
 private:
