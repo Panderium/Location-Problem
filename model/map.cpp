@@ -12,7 +12,10 @@ map::~map() {
 
 }
 
-map map::add_place(place p) {
+void map::add_place(place p) {
     places.push_back(p);
-    return map();
+}
+
+std::vector<place> map::get_places() {
+    return std::vector<place>();
 }

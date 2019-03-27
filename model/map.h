@@ -19,8 +19,8 @@ public:
     virtual ~map();
 
 public:
-    map add_place(place p);
-
+    void add_place(place p);
+    std::vector<place> get_places();
 private:
     std::vector<place> places;
     std::vector<road> roads;

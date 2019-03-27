@@ -44,7 +44,6 @@ int main(){
             tamp =ligne.substr(i+1,ligne.length()-1);
             num = std::stoi(tamp);
             ville.set_besoin(num);
-            cout << ville.get_besoin() << endl;
             m.add_place(ville);
         }
     fichier.close();
