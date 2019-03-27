@@ -22,13 +22,13 @@ public:
     float get_latitude();
     float get_longitude();
     int get_num_ville();
-    char get_type();
+    std::string get_type();
     int get_besoin();
 
     void set_latitude(float lat);
     void set_longitude(float lon);
     void set_num_ville(int num);
-    void set_type(char type);
+    void set_type(std::string type);
     void set_besoin(int bes);
 
 private:
@@ -37,7 +37,7 @@ private:
     int num_ville;
     float latitude;
     float longitude;
-    char type;
+    std::string type;
     int besoin;
 
 

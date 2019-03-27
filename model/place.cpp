@@ -24,7 +24,7 @@ std::string place::getName() {}
 int place::get_num_ville(){
     return  num_ville;
 }
-char place::get_type(){
+std::string place::get_type(){
     return type;
 }
 int place::get_besoin(){
@@ -44,7 +44,7 @@ void place::set_num_ville(int num) {
     num_ville = num;
 }
 
-void place::set_type(char ty) {
+void place::set_type(std::string ty) {
     type = ty;
 }
 place::~place() = default;
