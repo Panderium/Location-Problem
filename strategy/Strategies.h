@@ -44,7 +44,11 @@ private:
 
     void build_bb_matrix();
 
-    void distances_with_others(const Place &place);
+    std::vector<Node *> init_frontier();
+
+    void branch();
+
+    void bound();
 };
 
 #endif //LOCATION_PROBLEM_STRATEGIES_H
