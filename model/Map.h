@@ -9,7 +9,7 @@
 #include <vector>
 #include "Place.h"
 #include "road.h"
-#include "truck.h"
+#include "Truck.h"
 #include "Headquater.h"
 #include "../strategy/Strategies.h"
 
@@ -30,14 +30,14 @@ public:
 
     const std::vector<road> &getM_roads() const;
 
-    const std::vector<truck> &getM_trucks() const;
+    const std::vector<Truck> &getM_trucks() const;
 
     const Headquater &getM_hq() const;
 
 private:
     std::vector<Place> m_places;
     std::vector<road> m_roads;
-    std::vector<truck> m_trucks;
+    std::vector<Truck> m_trucks;
     Headquater m_hq;
     Strategy *m_strategy;
 };

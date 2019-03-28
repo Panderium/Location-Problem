@@ -32,7 +32,7 @@ const std::vector<road> &Map::getM_roads() const {
     return m_roads;
 }
 
-const std::vector<truck> &Map::getM_trucks() const {
+const std::vector<Truck> &Map::getM_trucks() const {
     return m_trucks;
 }
 

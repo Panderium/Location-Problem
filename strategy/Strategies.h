@@ -10,11 +10,15 @@
 
 class Strategy {
 public:
-    Strategy() = default;
+    Strategy() : { m_places = m_map->getM_places() };
 
-    virtual void execute(Map *map) = 0;
+    virtual void execute(Map *map) {
+        m_map = map;
+    };
 
-private:
+protected:
+    std::vector<Place> m_places
+    Map *m_map;
 };
 
 class ApproximateStrategy : public Strategy {
@@ -24,7 +28,7 @@ public:
     void execute(Map *map) override;
 
 private:
-    Map *m_map;
+
 
 };
 
@@ -39,8 +43,6 @@ private:
     std::vector<std::vector<float>> m_matrix;
 
     void build_bb_matrix();
-
-    Map *m_map;
 
     void distances_with_others(const Place &place);
 };

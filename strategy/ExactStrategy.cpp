@@ -10,18 +10,16 @@
 
 
 void ExactStrategy::execute(Map *map) {
-    m_map = map;
+    Strategy::execute(map);
     build_bb_matrix();
 }
 
 ExactStrategy::ExactStrategy() : Strategy() {
-
 }
 
 void ExactStrategy::build_bb_matrix() {
-    std::vector<Place> places = m_map->getM_places();
-    for (Place place : places) {
-        std::for_each(places.begin(), places.end(),
+    for (Place place : m_places) {
+        std::for_each(m_places.begin(), m_places.end(),
                       [&](Place *otherPLace) {
                           m_matrix[place.getM_num_ville()][otherPLace->getM_num_ville()] = place.calculate_distance(
                                   otherPLace);

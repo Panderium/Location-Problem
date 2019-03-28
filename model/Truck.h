@@ -5,20 +5,24 @@
 #ifndef LOCATION_PROBLEM_TRUCK_H
 #define LOCATION_PROBLEM_TRUCK_H
 
-class truck {
+class Truck {
 public:
-    truck();
+    Truck();
 
-    ~truck();
+    ~Truck();
 
     int load(int quantity);
 
     int unload(int quantity);
 
+    float getM_autonomy() const;
+
+    void setM_autonomy(float m_autonomy);
 
 private:
-    int payload;
-    const int max_payload = 50;
+    int m_payload;
+    const int m_max_payload = 50;
+    float m_autonomy;
 };
 
 #endif //LOCATION_PROBLEM_TRUCK_H
