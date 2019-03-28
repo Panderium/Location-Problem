@@ -4,8 +4,8 @@
 
 #include "Node.h"
 
-Node::Node(Node *m_father, int m_num_city, float m_coast) : m_father(m_father), m_num_city(m_num_city),
-                                                            m_coast(m_coast) {}
+Node::Node(int m_num_city, Node *m_father, Truck *m_truck, float m_branch_cost, float m_total_cost) : m_num_city(
+        m_num_city), m_father(m_father), m_truck(m_truck), m_branch_cost(m_branch_cost), m_total_cost(m_total_cost) {}
 
 Node *Node::getM_father() const {
     return m_father;
@@ -17,13 +17,22 @@ int Node::getM_num_city() const {
 }
 
 
-float Node::getM_coast() const {
-    return m_coast;
-}
-
-
 Truck *Node::getM_truck() const {
     return m_truck;
 }
+
+float Node::getM_branch_cost() const {
+    return m_branch_cost;
+}
+
+float Node::getM_total_cost() const {
+    return m_total_cost;
+}
+
+void Node::add_to_total_cost(float cost) {
+    m_total_cost += cost;
+}
+
+
 
 

@@ -10,21 +10,26 @@
 
 class Node {
 public:
-    Node(Node *m_father, int m_num_city, float m_coast);
+    Node(int m_num_city, Node *m_father, Truck *m_truck, float m_branch_cost, float m_total_cost);
 
     Node *getM_father() const;
 
     int getM_num_city() const;
 
-    float getM_coast() const;
-
     Truck *getM_truck() const;
+
+    float getM_branch_cost() const;
+
+    float getM_total_cost() const;
+
+    void add_to_total_cost(float cost);
 
 private:
     int m_num_city;
     Node *m_father;
     Truck *m_truck;
-    float m_coast;
+    float m_branch_cost;
+    float m_total_cost;
 };
 
 
