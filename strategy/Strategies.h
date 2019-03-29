@@ -10,14 +10,14 @@
 
 class Strategy {
 public:
-    Strategy() : { m_places = m_map->getM_places() };
+    Strategy():{ m_places = m_map->getM_places() ;};
 
     virtual void execute(Map *map) {
         m_map = map;
     };
 
 protected:
-    std::vector<Place> m_places
+    std::vector<Place> m_places;
     Map *m_map;
 };
 
@@ -44,7 +44,7 @@ private:
 
     void build_bb_matrix();
 
-    std::vector<Node *> init_frontier();
+    std::vector<Node*> init_frontier();
 
     void branch();
 

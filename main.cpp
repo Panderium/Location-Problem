@@ -40,7 +40,7 @@ int main(){
             ville.setM_longitude(f);
 
             i = z;
-            i = ligne.find('dp,',i+1);
+            i = ligne.find(',',i+3);
             tamp =ligne.substr(i+1,ligne.length()-1);
             num = std::stoi(tamp);
             ville.setM_besoin(num);
@@ -51,14 +51,15 @@ int main(){
     else
         cerr << "Impossible d'ouvrir le fichier !" << endl;
 
-    //methode exact
-    m.set_strategy(new ExactStrategy());
+    //methode exacte
+   /** m.set_strategy(new ExactStrategy());
     m.apply_methode();
 
-    //methode approché
+    //methode approchée
     m.set_strategy(new ApproximateStrategy());
     m.apply_methode();
     // p.Parser();
 
+   **/
     return 0;
 }
