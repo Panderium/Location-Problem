@@ -44,7 +44,7 @@ Map Parse::Parser(){
             ville.setM_longitude(f);
 
             i = z;
-            i = ligne.find('dp,',i+1);
+            i = ligne.find(',',i+1);
             tamp =ligne.substr(i+1,ligne.length()-1);
             num = std::stoi(tamp);
             ville.setM_besoin(num);

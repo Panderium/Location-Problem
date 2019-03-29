@@ -1,50 +1,48 @@
 //
-// Created by panderium on 21/02/19.
+// Created by panderium on 19-03-29.
 //
 
 #ifndef LOCATION_PROBLEM_STRATEGIES_H
 #define LOCATION_PROBLEM_STRATEGIES_H
 
-#include <iostream>
-#include "../model/Map.h"
+
+#include <vector>
+#include "../model/Place.h"
 #include "Node.h"
+
 class Strategy {
 public:
-    Strategy() { m_places = m_map.getM_places() ;};
+    Strategy() {};
 
-    virtual void execute(Map map) {
-        m_map = map;
-    };
+    virtual void execute(std::vector<Place> places) = 0;
+
+    virtual ~Strategy() {};
 
 protected:
-    std::vector<Place> m_places;
-    Map m_map;
 };
 
 class ApproximateStrategy : public Strategy {
 public:
-    ApproximateStrategy();
+    ApproximateStrategy() : Strategy() {};
 
-    void execute(Map *map) ;
+    void execute(std::vector<Place> places) override;
 
 private:
-
-
 };
+
 
 class ExactStrategy : public Strategy {
 public:
-    ExactStrategy();
+    ExactStrategy() : Strategy() {};
 
-    void execute(Map &map) ;
-
+    void execute(std::vector<Place> places) override;
 
 private:
     std::vector<std::vector<float>> m_matrix;
 
-    void build_bb_matrix();
+    void build_bb_matrix(std::vector<Place> places);
 
-    std::vector<Node*> init_frontier();
+    std::vector<Node *> init_frontier(std::vector<Place> places);
 
     void branch();
 

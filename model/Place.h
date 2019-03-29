@@ -1,61 +1,61 @@
 //
-// Created by panderium on 21/02/19.
+// Created by panderium on 19-03-29.
 //
 
 #ifndef LOCATION_PROBLEM_PLACE_H
 #define LOCATION_PROBLEM_PLACE_H
 
 #include <string>
-#include "../utils/location.h"
+#include <math.h>
+#include "../utils/Location.h"
 
 class Place {
 public:
-    Place();
 
-    Place(std::string name, location loc);
+    Place() = default;
 
     float calculate_distance(Place place);
 
+
     const std::string &getM_name() const;
-
-    const location &getM_loc() const;
-
-    int getM_num_ville() const;
-
-    float getM_latitude() const;
-
-    float getM_longitude() const;
-
-    char getM_type() const;
-
-    int getM_besoin() const;
 
     void setM_name(const std::string &m_name);
 
-    void setM_loc(const location &m_loc);
+    const Location &getM_loc() const;
+
+    void setM_loc(const Location &m_loc);
+
+    int getM_num_ville() const;
 
     void setM_num_ville(int m_num_ville);
 
+    float getM_latitude() const;
+
     void setM_latitude(float m_latitude);
+
+    float getM_longitude() const;
 
     void setM_longitude(float m_longitude);
 
+    char getM_type() const;
+
     void setM_type(char m_type);
+
+    int getM_besoin() const;
 
     void setM_besoin(int m_besoin);
 
-    ~Place();
+    void print();
 
 private:
     std::string m_name;
-    location m_loc;
+    Location m_loc;
     int m_num_ville;
     float m_latitude;
     float m_longitude;
     char m_type;
     int m_besoin;
-
-
 };
+
 
 #endif //LOCATION_PROBLEM_PLACE_H

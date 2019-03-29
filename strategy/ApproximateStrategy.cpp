@@ -1,19 +1,8 @@
 //
-// Created by panderium on 21/02/19.
+// Created by panderium on 19-03-29.
 //
 
 #include "Strategies.h"
-
-
-void ApproximateStrategy::execute(Map &map) {
-    Strategy::execute(map);
+void ApproximateStrategy::execute(std::vector<Place> places) {
 
 }
-
-ApproximateStrategy::ApproximateStrategy() : Strategy() {
-
-}
-
-
-
-

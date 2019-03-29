@@ -10,17 +10,17 @@
 
 using namespace std;
 
-int main(){
-    ifstream fichier("C:/Users/camil/Documents/Polytech/UQAC/trimestre 2/Algorithmique/Location-Problem/data.txt");
+int main() {
+    ifstream fichier("/home/panderium/Documents/UQAC/Algorithmique/Location-Problem/data.txt");
     Map m;
     Place p;
-    if(fichier){
+    if (fichier) {
         Place ville;
         string ligne;
         int num;
         float f;
         getline(fichier, ligne);
-        while(getline(fichier, ligne))  // tant que l'on peut mettre la ligne dans "contenu"
+        while (getline(fichier, ligne))  // tant que l'on peut mettre la ligne dans "contenu"
         {//getline(fichier, ligne);
             int z = ligne.find(',');
             int i = z;
@@ -28,38 +28,40 @@ int main(){
             num = std::stoi(tamp);
             ville.setM_num_ville(num);
 
-            z = ligne.find(',',i+1);
-            tamp = ligne.substr(i+1, z);
+            z = ligne.find(',', i + 1);
+            tamp = ligne.substr(i + 1, z);
             f = std::stof(tamp);
             ville.setM_latitude(f);
 
             i = z;
-            z = ligne.find(',',i+1);
-            tamp = ligne.substr(i+1, z);
+            z = ligne.find(',', i + 1);
+            tamp = ligne.substr(i + 1, z);
             f = std::stof(tamp);
             ville.setM_longitude(f);
 
             i = z;
-            i = ligne.find(',',i+3);
-            tamp =ligne.substr(i+1,ligne.length()-1);
+            i = ligne.find(',', i + 3);
+            tamp = ligne.substr(i + 1, ligne.length() - 1);
             num = std::stoi(tamp);
             ville.setM_besoin(num);
             m.add_place(ville);
         }
-    fichier.close();
-    }
-    else
+        fichier.close();
+    } else
         cerr << "Impossible d'ouvrir le fichier !" << endl;
+    auto places = m.getM_places();
+    for (Place place : places)
+        place.print();
 
     //methode exacte
-   /** m.set_strategy(new ExactStrategy());
-    m.apply_methode();
+    /** m.set_strategy(new ExactStrategy());
+     m.apply_methode();
 
-    //methode approchée
-    m.set_strategy(new ApproximateStrategy());
-    m.apply_methode();
-    // p.Parser();
+     //methode approchée
+     m.set_strategy(new ApproximateStrategy());
+     m.apply_methode();
+     // p.Parser();
 
-   **/
+    **/
     return 0;
 }

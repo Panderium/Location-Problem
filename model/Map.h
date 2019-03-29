@@ -1,39 +1,32 @@
 //
-// Created by panderium on 21/02/19.
+// Created by panderium on 19-03-29.
 //
 
 #ifndef LOCATION_PROBLEM_MAP_H
 #define LOCATION_PROBLEM_MAP_H
 
-
 #include <vector>
 #include "Place.h"
-#include "Headquater.h"
 #include "../strategy/Strategies.h"
 
 class Map {
+private:
+    std::vector<Place> m_places;
+    Strategy *m_strategy;
 public:
     Map();
 
-    virtual ~Map();
-
-public:
-    Map add_place(Place p);
-
-    void set_strategy(Strategy *strat);
-
-    void apply_methode();
-
+    void add_place(Place p);
 
     const std::vector<Place> &getM_places() const;
 
+    void setM_strategy(Strategy *m_strategy);
 
-    const Headquater &getM_hq() const;
+    void execut_strategy() const;
 
-private:
-    std::vector<Place> m_places;
-    Headquater m_hq;
-    Strategy *m_strategy;
+    ~Map() = default;
+
+
 };
 
 

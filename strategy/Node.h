@@ -1,5 +1,5 @@
 //
-// Created by panderium on 19-03-27.
+// Created by panderium on 19-03-29.
 //
 
 #ifndef LOCATION_PROBLEM_NODE_H
@@ -11,7 +11,7 @@
 
 class Node {
 public:
-    Node(Place *place, Node *m_father,  const std::vector<Place> &m_left_places, float m_branch_cost,
+    Node(Place *place, Node *m_father, const std::vector<Place> &m_left_places, float m_branch_cost,
          float m_total_cost);
 
     Node *getM_father() const;

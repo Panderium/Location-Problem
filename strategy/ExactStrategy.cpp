@@ -1,34 +1,17 @@
 //
-// Created by panderium on 21/02/19.
+// Created by panderium on 19-03-29.
 //
-
-#include "Strategies.h"
-#include "Node.h"
-#include <vector>
-#include <iostream>
 #include <algorithm>
-#include <functional>
+#include "Strategies.h"
 
-
-void ExactStrategy::execute(Map &map) {
-    Strategy::execute(map);
-    build_bb_matrix();
-    std::vector<Node *> frontier = init_frontier();
-
-    while (std::for_each(frontier.begin(), frontier.end(),
-                         [](Node *node) { return !node->getM_left_places().empty(); })) {
-        branch();
-        bound();
-    }
-    //TODO : traiter la branche ayant la solution
+void ExactStrategy::execute(std::vector<Place> places) {
+    build_bb_matrix(places);
+    std::vector<Node *> frontier = init_frontier(places);
 }
 
-ExactStrategy::ExactStrategy() : Strategy() {
-}
-
-void ExactStrategy::build_bb_matrix() {
-    for (Place place : m_places) {
-        std::for_each(m_places.begin(), m_places.end(),
+void ExactStrategy::build_bb_matrix(std::vector<Place> places) {
+    for (Place place : places) {
+        std::for_each(places.begin(), places.end(),
                       [&](Place otherPLace) {
                           m_matrix[place.getM_num_ville()][otherPLace.getM_num_ville()] = place.calculate_distance(otherPLace);
                       });
@@ -38,20 +21,12 @@ void ExactStrategy::build_bb_matrix() {
     }
 }
 
-std::vector<Node *> ExactStrategy::init_frontier() {
+std::vector<Node *> ExactStrategy::init_frontier(std::vector<Place> places) {
     std::vector<Node *> nodes;
-    for (Place place : m_places) {
-        Node *node = new Node(&place, NULL, m_places, 0, 0);
-        node->remove_delivered_place(&place);
+    for (Place place : places) {
+        Node *node = new Node(&place, NULL, places, 0, 0);
+        //node->remove_delivered_place(&place);
         nodes.push_back(node);
     }
     return nodes;
-}
-
-void ExactStrategy::branch() {
-
-}
-
-void ExactStrategy::bound() {
-
 }

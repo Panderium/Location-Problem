@@ -6,13 +6,13 @@
 #define LOCATION_PROBLEM_UTILS_H
 
 
-class location {
+class Location {
 public:
-    location();
+    Location();
 
-    location(int x, int y);
+    Location(int x, int y);
 
-    ~location();
+    ~Location();
 
     int getX();
 
