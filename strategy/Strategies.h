@@ -10,9 +10,9 @@
 
 class Strategy {
 public:
-    Strategy():{ m_places = m_map->getM_places() ;};
+    Strategy() { m_places = m_map->getM_places() ;};
 
-    virtual void execute(Map *map) {
+    virtual void execute(Map &map) {
         m_map = map;
     };
 
@@ -25,7 +25,7 @@ class ApproximateStrategy : public Strategy {
 public:
     ApproximateStrategy();
 
-    void execute(Map *map) override;
+    void execute(Map &map) override;
 
 private:
 
@@ -36,7 +36,7 @@ class ExactStrategy : public Strategy {
 public:
     ExactStrategy();
 
-    void execute(Map *map) override;
+    void execute(Map &map) override;
 
 
 private:

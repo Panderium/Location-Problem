@@ -10,7 +10,7 @@
 #include <functional>
 
 
-void ExactStrategy::execute(Map *map) {
+void ExactStrategy::execute(Map &map) {
     Strategy::execute(map);
     build_bb_matrix();
     std::vector<Node *> frontier = init_frontier();

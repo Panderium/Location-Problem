@@ -5,7 +5,7 @@
 #include "Strategies.h"
 
 
-void ApproximateStrategy::execute(Map* map) {
+void ApproximateStrategy::execute(Map &map) {
     Strategy::execute(map);
 
 }

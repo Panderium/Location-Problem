@@ -21,9 +21,10 @@ public:
 public:
     Map add_place(Place p);
 
-    void set_strategy(Strategy* strat);
+    void set_strategy(Strategy *strat);
 
     void apply_methode();
+
 
     const std::vector<Place> &getM_places() const;
 
