@@ -11,10 +11,6 @@ Node *Node::getM_father() const {
 }
 
 
-Truck *Node::getM_truck() const {
-    return m_truck;
-}
-
 float Node::getM_branch_cost() const {
     return m_branch_cost;
 }
@@ -44,8 +40,8 @@ Place *Node::getPlace() const {
     return place;
 }
 
-Node::Node(Place *place, Node *m_father, Truck *m_truck, const std::vector<Place> &m_left_places, float m_branch_cost,
-           float m_total_cost) : place(place), m_father(m_father), m_truck(m_truck), m_left_places(m_left_places),
+Node::Node(Place *place, Node *m_father, const std::vector<Place> &m_left_places, float m_branch_cost,
+           float m_total_cost) : place(place), m_father(m_father), m_left_places(m_left_places),
                                  m_branch_cost(m_branch_cost), m_total_cost(m_total_cost) {}
 
 

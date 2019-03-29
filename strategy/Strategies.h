@@ -10,15 +10,15 @@
 #include "Node.h"
 class Strategy {
 public:
-    Strategy() { m_places = m_map->getM_places() ;};
+    Strategy() { m_places = m_map.getM_places() ;};
 
-    virtual void execute(Map *map) {
-        Strategy::m_map = map;
+    virtual void execute(Map map) {
+        m_map = map;
     };
 
 protected:
     std::vector<Place> m_places;
-    Map *m_map;
+    Map m_map;
 };
 
 class ApproximateStrategy : public Strategy {

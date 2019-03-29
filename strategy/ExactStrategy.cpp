@@ -41,7 +41,7 @@ void ExactStrategy::build_bb_matrix() {
 std::vector<Node *> ExactStrategy::init_frontier() {
     std::vector<Node *> nodes;
     for (Place place : m_places) {
-        Node *node = new Node(&place, NULL, new Truck, m_places, 0, 0);
+        Node *node = new Node(&place, NULL, m_places, 0, 0);
         node->remove_delivered_place(&place);
         nodes.push_back(node);
     }

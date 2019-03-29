@@ -7,19 +7,17 @@
 
 
 #include <vector>
-#include "../model/Truck.h"
 #include "../model/Place.h"
 
 class Node {
 public:
-    Node(Place *place, Node *m_father, Truck *m_truck, const std::vector<Place> &m_left_places, float m_branch_cost,
+    Node(Place *place, Node *m_father,  const std::vector<Place> &m_left_places, float m_branch_cost,
          float m_total_cost);
 
     Node *getM_father() const;
 
     Place *getPlace() const;
 
-    Truck *getM_truck() const;
 
     float getM_branch_cost() const;
 
@@ -34,7 +32,6 @@ public:
 private:
     Place *place;
     Node *m_father;
-    Truck *m_truck;
     std::vector<Place> m_left_places;
     float m_branch_cost;
     float m_total_cost;

@@ -8,7 +8,6 @@
 
 #include <vector>
 #include "Place.h"
-#include "Truck.h"
 #include "Headquater.h"
 #include "../strategy/Strategies.h"
 
@@ -28,13 +27,11 @@ public:
 
     const std::vector<Place> &getM_places() const;
 
-    const std::vector<Truck> &getM_trucks() const;
 
     const Headquater &getM_hq() const;
 
 private:
     std::vector<Place> m_places;
-    std::vector<Truck> m_trucks;
     Headquater m_hq;
     Strategy *m_strategy;
 };
