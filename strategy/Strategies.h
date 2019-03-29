@@ -7,13 +7,13 @@
 
 #include <iostream>
 #include "../model/Map.h"
-
+#include "Node.h"
 class Strategy {
 public:
     Strategy() { m_places = m_map->getM_places() ;};
 
-    virtual void execute(Map &map) {
-        m_map = map;
+    virtual void execute(Map *map) {
+        Strategy::m_map = map;
     };
 
 protected:
@@ -25,7 +25,7 @@ class ApproximateStrategy : public Strategy {
 public:
     ApproximateStrategy();
 
-    void execute(Map &map) override;
+    void execute(Map *map) ;
 
 private:
 
@@ -36,7 +36,7 @@ class ExactStrategy : public Strategy {
 public:
     ExactStrategy();
 
-    void execute(Map &map) override;
+    void execute(Map &map) ;
 
 
 private:

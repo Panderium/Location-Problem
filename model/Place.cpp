@@ -11,9 +11,9 @@ Place::Place(std::string name, location loc) {
     this->m_loc = loc;
 }
 
-float Place::calculate_distance(Place *place) {
-    return sqrt((m_latitude - place->m_latitude) * (m_latitude - place->m_latitude) +
-                (m_longitude - place->m_longitude) * (m_longitude - place->m_longitude));
+float Place::calculate_distance(Place place) {
+    return sqrt((m_latitude - place.m_latitude) * (m_latitude - place.m_latitude) +
+                (m_longitude - place.m_longitude) * (m_longitude - place.m_longitude));
 }
 
 const std::string &Place::getM_name() const {

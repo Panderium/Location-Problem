@@ -14,7 +14,7 @@ public:
 
     Place(std::string name, location loc);
 
-    float calculate_distance(Place *place);
+    float calculate_distance(Place place);
 
     const std::string &getM_name() const;
 

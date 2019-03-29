@@ -29,9 +29,8 @@ ExactStrategy::ExactStrategy() : Strategy() {
 void ExactStrategy::build_bb_matrix() {
     for (Place place : m_places) {
         std::for_each(m_places.begin(), m_places.end(),
-                      [&](Place *otherPLace) {
-                          m_matrix[place.getM_num_ville()][otherPLace->getM_num_ville()] = place.calculate_distance(
-                                  otherPLace);
+                      [&](Place otherPLace) {
+                          m_matrix[place.getM_num_ville()][otherPLace.getM_num_ville()] = place.calculate_distance(otherPLace);
                       });
     }
     for (int i = 0; i < m_matrix.size(); ++i) {
