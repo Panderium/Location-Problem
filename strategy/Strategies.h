@@ -10,6 +10,8 @@
 #include <vector>
 #include "../model/Place.h"
 #include "../model/Solution.h"
+#include "../model/Map.h"
+
 
 #include "Node.h"
 
@@ -33,17 +35,21 @@ public:
         return n;}
 
     float calc_f_obj(Solution sol);
-
     std::vector<Solution> generate_solutions(Map m);
 
-    Solution mutation();
+    Solution tournoi(Solution s1, Solution s2);
 
-    Solution croisement();
+    bool is_in(std::vector<int> tab ,int e);
+
+    Solution mutation(Solution s);
+
+    Solution croisement(Solution s1, Solution s2);
 
     std::vector<Solution> selection_solutions(std::vector<Solution> population);
 
     void execute(std::vector<Solution> places) ;
 
+//setters et getters
     float getP_mutation() const;
 
     void setP_mutation(float p_mutation);
