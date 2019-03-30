@@ -5,7 +5,8 @@
 #ifndef LOCATION_PROBLEM_STRATEGIES_H
 #define LOCATION_PROBLEM_STRATEGIES_H
 
-
+#include <cstdlib>
+#include <time.h>
 #include <vector>
 #include "../model/Place.h"
 #include "../model/Solution.h"
@@ -27,9 +28,13 @@ class ApproximateStrategy : public Strategy {
 public:
     ApproximateStrategy() : Strategy() {};
 
+    int rand_a_b(int a, int b){
+        int n =rand()%(b-a)+a;
+        return n;}
+
     float calc_f_obj(Solution sol);
 
-    std::vector<Solution> generate_solutions();
+    std::vector<Solution> generate_solutions(Map m);
 
     Solution mutation();
 
@@ -37,10 +42,25 @@ public:
 
     std::vector<Solution> selection_solutions(std::vector<Solution> population);
 
+    void execute(std::vector<Solution> places) ;
 
-    void execute(std::vector<Solution> places) override;
+    float getP_mutation() const;
+
+    void setP_mutation(float p_mutation);
+
+    float getP_croissement() const;
+
+    void setP_croissement(float p_croissement);
+
+    int getNb_pop() const;
+
+    void setNb_pop(int nb_pop);
 
 private:
+    //Paramètres
+    float p_mutation = 0.5;
+    float p_croissement = 0.5;
+    int nb_pop = 10;
 };
 
 

@@ -10,6 +10,23 @@
 
 class Solution {
 public:
+    const std::vector<float> &getDistance() const;
+
+    void setDistance(const std::vector<float> &distance);
+
+    const std::vector<Place> &getPlaces() const;
+
+    void setPlaces(const std::vector<Place> &places);
+
+    const Place &getSolution() const;
+
+    void setSolution(const Place &solution);
+
+    Place get_place_by_indice(int ind);
+
+    float & get_dist_by_indice(int ind);
+
+    void add_distance(float f);
 
 private:
     std::vector<float> distance;
