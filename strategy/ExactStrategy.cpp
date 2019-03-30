@@ -2,39 +2,24 @@
 // Created by panderium on 19-03-29.
 //
 #include <algorithm>
-<<<<<<< Updated upstream
+#include <iostream>
 #include "Strategies.h"
-=======
-#include <functional>
-
-
-void ExactStrategy::execute(Map map) {
-    Strategy::execute(map);
-    build_bb_matrix();
-    std::vector<Node *> frontier = init_frontier();
-
-    while (std::for_each(frontier.begin(), frontier.end(),
-                         [](Node *node) { return !node->getM_left_places().empty(); })) {
-        branch();
-        bound();
-    }
-    //TODO : traiter la branche ayant la solution
-}
->>>>>>> Stashed changes
 
 void ExactStrategy::execute(std::vector<Place> places) {
+
     build_bb_matrix(places);
     std::vector<Node *> frontier = init_frontier(places);
 }
 
 void ExactStrategy::build_bb_matrix(std::vector<Place> places) {
-    for (Place place : places) {
-        std::for_each(places.begin(), places.end(),
-                      [&](Place otherPLace) {
-                          m_matrix[place.getM_num_ville()][otherPLace.getM_num_ville()] = place.calculate_distance(otherPLace);
-                      });
-    }
-    for (int i = 0; i < m_matrix.size(); ++i) {
+    m_matrix.resize(places.size() + 1);
+    std::for_each(places.begin(), places.end(), [=](Place place) {
+        m_matrix[place.getM_num_ville()].resize(places.size() + 1);
+        std::for_each(places.begin(), places.end(), [=](Place place1) {
+            this->m_matrix[place.getM_num_ville()][place1.getM_num_ville()] = place1.calculate_distance(place);
+        });
+    });
+    for (int i = 1; i < places.size() + 1; ++i) {
         m_matrix[i][i] = std::numeric_limits<float>::infinity();
     }
 }
