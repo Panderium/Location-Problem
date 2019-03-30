@@ -6,7 +6,7 @@
 #define LOCATION_PROBLEM_SOLUTION_H
 
 #include <vector>
-#include "Map.h"
+#include "Place.h"
 
 class Solution {
 public:
