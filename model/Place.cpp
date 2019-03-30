@@ -61,7 +61,7 @@ void Place::setM_besoin(int m_besoin) {
     Place::m_besoin = m_besoin;
 }
 
-float Place::calculate_distance(Place place) {
+float Place::calculate_distance(Place place) const {
     return sqrt((m_latitude - place.m_latitude) * (m_latitude - place.m_latitude) +
                 (m_longitude - place.m_longitude) * (m_longitude - place.m_longitude));
 }

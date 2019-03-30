@@ -27,12 +27,12 @@ public:
 
     const std::vector<Place> &getM_left_places() const;
 
-    int remove_delivered_place(Place *place);
+    int remove_delivered_place(Place place);
 
 private:
     Place *place;
     Node *m_father;
-    std::vector<Place> m_left_places;
+    std::vector<Place > m_left_places;
     float m_branch_cost;
     float m_total_cost;
 };
