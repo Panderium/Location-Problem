@@ -44,4 +44,11 @@ Node::Node(Place *place, Node *m_father, const std::vector<Place> &m_left_places
            float m_total_cost) : place(place), m_father(m_father), m_left_places(m_left_places),
                                  m_branch_cost(m_branch_cost), m_total_cost(m_total_cost) {}
 
+int Node::remove_delivered_place(Place place) {
+    m_left_places.erase(std::remove(m_left_places.begin(), m_left_places.end(), place), m_left_places.end());
+
+
+    return 1;
+}
+
 

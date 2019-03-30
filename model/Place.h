@@ -14,7 +14,7 @@ public:
 
     Place() = default;
 
-    static float calculate_distance(Place place);
+    float calculate_distance(Place place) const ;
 
 
     const std::string &getM_name() const;
@@ -46,6 +46,9 @@ public:
     void setM_besoin(int m_besoin);
 
     void print();
+    bool operator==(const Place &rhs) const {
+        return rhs.getM_num_ville() == getM_num_ville();
+    }
 
 private:
     std::string m_name;
