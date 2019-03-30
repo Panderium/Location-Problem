@@ -2,7 +2,25 @@
 // Created by panderium on 19-03-29.
 //
 #include <algorithm>
+<<<<<<< Updated upstream
 #include "Strategies.h"
+=======
+#include <functional>
+
+
+void ExactStrategy::execute(Map map) {
+    Strategy::execute(map);
+    build_bb_matrix();
+    std::vector<Node *> frontier = init_frontier();
+
+    while (std::for_each(frontier.begin(), frontier.end(),
+                         [](Node *node) { return !node->getM_left_places().empty(); })) {
+        branch();
+        bound();
+    }
+    //TODO : traiter la branche ayant la solution
+}
+>>>>>>> Stashed changes
 
 void ExactStrategy::execute(std::vector<Place> places) {
     build_bb_matrix(places);

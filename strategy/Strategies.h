@@ -8,6 +8,8 @@
 
 #include <vector>
 #include "../model/Place.h"
+#include "../model/Solution.h"
+
 #include "Node.h"
 
 class Strategy {
@@ -25,7 +27,18 @@ class ApproximateStrategy : public Strategy {
 public:
     ApproximateStrategy() : Strategy() {};
 
-    void execute(std::vector<Place> places) override;
+    float calc_f_obj(Solution sol);
+
+    std::vector<Solution> generate_solutions();
+
+    Solution mutation();
+
+    Solution croisement();
+
+    std::vector<Solution> selection_solutions(std::vector<Solution> population);
+
+
+    void execute(std::vector<Solution> places) override;
 
 private:
 };
