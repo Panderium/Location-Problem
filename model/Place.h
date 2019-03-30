@@ -14,7 +14,7 @@ public:
 
     Place() = default;
 
-    float calculate_distance(Place place);
+    static float calculate_distance(Place place);
 
 
     const std::string &getM_name() const;

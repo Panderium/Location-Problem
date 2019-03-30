@@ -16,13 +16,19 @@ private:
 public:
     Map();
 
+    Place get_place_by_indice(int ind);
+
     void add_place(Place p);
 
     const std::vector<Place> &getM_places() const;
 
+    void setM_places(const std::vector<Place> &m_places);
+
     void setM_strategy(Strategy *m_strategy);
 
     void execut_strategy() const;
+
+    std::vector<Place> supp_place(Place pl);
 
     ~Map() = default;
 
