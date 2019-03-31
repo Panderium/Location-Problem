@@ -58,6 +58,10 @@ public:
 
     void setP_croissement(float p_croissement);
 
+    int getNb_iteration() const;
+
+    void setNb_iteration(int nb_iteration);
+
     int getNb_pop() const;
 
     void setNb_pop(int nb_pop);
@@ -67,6 +71,7 @@ private:
     float p_mutation = 0.5;
     float p_croissement = 0.5;
     int nb_pop = 10;
+    int nb_iteration = 100;
 };
 
 

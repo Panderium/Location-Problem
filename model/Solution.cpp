@@ -41,3 +41,13 @@ Place Solution::get_place_by_indice(int ind) {
 void Solution::add_distance(float f) {
     distance.push_back(f);
 }
+
+bool Solution::is_in(std::vector<Place> pls, Place pl) {
+    for(int i=0; i<pls.size();i++){
+        if(pls[i] == pl){
+            return true;
+        }
+    }
+    return false;
+}
+

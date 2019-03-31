@@ -3,6 +3,8 @@
 //
 #include "../model/Place.h"
 #include "Strategies.h"
+#include <iostream>
+
 
 
 void ApproximateStrategy::execute(std::vector<Solution> places) {
@@ -42,22 +44,45 @@ Solution ApproximateStrategy::croisement(Solution parent1, Solution parent2) {
     std::vector<int> masque;
     int i = rand_a_b(1,parent1.getPlaces().size()-1);
     std::vector<Place> pl;
-    for(int j=0; j<i; j++) {
-        int n =rand_a_b(0, parent1.getPlaces().size());
-        if (is_in(masque,n)){
-            masque.push_back(n);
+    if(parent1.getSolution() == parent2.getSolution()) {
+        return parent1;
+    }else {
+        for (int j = 0; j < i; j++) {
+            int n = rand_a_b(0, parent1.getPlaces().size());
+            if (is_in(masque, n)) {
+                masque.push_back(n);
+            }
         }
-    }
-    for(int j=0; j < masque.size(); j++) {
-        pl.push_back(parent1.get_place_by_indice(masque[j]));
-    }
-    //TODO remplir avec le parent2
-    /**for(int i=0; i< parent2.getPlaces().size();i++){
-    }**/
-    //TODO trouver la ville manquante
-    //TODO calc distance
+        for (int j = 0; j < masque.size(); j++) {
+            pl.push_back(parent1.get_place_by_indice(masque[j]));
+        }
+        //TODO remplir avec le parent2
+        int taille = parent2.getPlaces().size()-masque.size()+1;
+        for(int i=0; i < taille; i++){
+            if(res.is_in(pl,parent2.get_place_by_indice(i))){
+                taille = taille +1 ;
+            }else{
+                pl.push_back(parent2.get_place_by_indice(i));
+            }
+        }
+        //trouver la ville manquante
+        for (int i = taille; i < parent2.getPlaces().size(); i++){
+            if(!res.is_in(res.getPlaces(),parent2.get_place_by_indice(i))){
+                res.setSolution(parent2.get_place_by_indice(i));
+            }
+        }
+        bool test = res.is_in(res.getPlaces(),res.getSolution());
         res.setPlaces(pl);
+        // calcul de la distance
+        for(int j=0; j< res.getPlaces().size();i++){
+            res.add_distance(res.getSolution().calculate_distance(res.get_place_by_indice(j)));
+        }
+        if(test){
+            std::cout<< "erreur dans le croisement"<<std::endl;
+        }
         return res;
+
+    }
 }
 
 //getters et setters
@@ -79,13 +104,6 @@ int ApproximateStrategy::getNb_pop() const {
 void ApproximateStrategy::setNb_pop(int nb_pop) {
     ApproximateStrategy::nb_pop = nb_pop;
 }
-int ApproximateStrategy::getNb_iteration() const {
-    return nb_iteration;
-}
-void ApproximateStrategy::setNb_iteration(int nb_iteration) {
-    ApproximateStrategy::nb_iteration = nb_iteration;
-}
-
 bool ApproximateStrategy::is_in(std::vector<int> tab, int e) {
     for(int i=0; i<tab.size();i++){
         if(tab[i]==e){
@@ -93,4 +111,10 @@ bool ApproximateStrategy::is_in(std::vector<int> tab, int e) {
         }
     }
     return false;
+}
+int ApproximateStrategy::getNb_iteration() const {
+    return nb_iteration;
+}
+void ApproximateStrategy::setNb_iteration(int nb_iteration) {
+    ApproximateStrategy::nb_iteration = nb_iteration;
 }
