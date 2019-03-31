@@ -14,6 +14,9 @@ public:
 
     Place() = default;
 
+    Place(const std::string &m_name, const Location &m_loc, int m_num_ville, float m_latitude, float m_longitude,
+          char m_type, int m_besoin);
+
     float calculate_distance(Place place) const ;
 
 

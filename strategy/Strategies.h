@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <time.h>
 #include <vector>
+
 #include "../model/Place.h"
 #include "../model/Solution.h"
 
@@ -34,7 +35,7 @@ public:
 
     float calc_f_obj(Solution sol);
 
-    std::vector<Solution> generate_solutions(Map m);
+//    std::vector<Solution> generate_solutions(Map m);
 
     Solution mutation();
 
@@ -71,15 +72,21 @@ public:
     void execute(std::vector<Place> places) override;
 
 private:
-    std::vector<std::vector<float>> m_matrix;
+    std::vector<std::vector<float> > m_matrix;
+
+    std::vector<Node *> m_frontier;
 
     void build_bb_matrix(std::vector<Place> places);
 
     std::vector<Node *> init_frontier(std::vector<Place> places);
 
-    void branch();
 
-    void bound();
+
+    int bb();
+
+    bool one_left_places_is_not_empty();
+
+    bool improve_bb(Node *pNode);
 };
 
 #endif //LOCATION_PROBLEM_STRATEGIES_H

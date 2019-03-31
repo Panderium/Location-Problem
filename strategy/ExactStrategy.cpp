@@ -8,9 +8,9 @@
 void ExactStrategy::execute(std::vector<Place> places) {
 
     build_bb_matrix(places);
-    std::vector<Node *> frontier = init_frontier(places);
-
-
+    m_frontier.resize(places.size());
+    m_frontier = init_frontier(places);
+    bb();
 }
 
 void ExactStrategy::build_bb_matrix(std::vector<Place> places) {
@@ -28,10 +28,26 @@ void ExactStrategy::build_bb_matrix(std::vector<Place> places) {
 
 std::vector<Node *> ExactStrategy::init_frontier(std::vector<Place> places) {
     std::vector<Node *> nodes;
+
     for (Place place : places) {
-        Node *node = new Node(&place, NULL, places, 0, 0);
+        //new Place(place.getM_name(), place.getM_loc(), place.getM_num_ville(), place.getM_latitude(),place.getM_longitude(), place.getM_type(), place.getM_besoin())
+        Node *node = new Node(place, places, 0);
         node->remove_delivered_place(place);
         nodes.push_back(node);
+        std::cout << nodes.back()->getPlace().getM_num_ville() << std::endl;
     }
     return nodes;
+}
+
+int ExactStrategy::bb() {
+    float bestSolution = std::numeric_limits<float>::infinity();
+    int idxBestSolution = 0;
+    for (int i = 0; i < m_frontier.size(); ++i) {
+        if (m_frontier[i]->computeSolution(bestSolution)) {
+            bestSolution = m_frontier[i]->getM_cost();
+            idxBestSolution = i;
+        }
+    }
+
+    return idxBestSolution;
 }

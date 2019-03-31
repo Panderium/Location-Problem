@@ -8,33 +8,27 @@
 
 #include <vector>
 #include "../model/Place.h"
+#include "../model/Solution.h"
 
 class Node {
 public:
-    Node(Place *place, Node *m_father, const std::vector<Place> &m_left_places, float m_branch_cost,
-         float m_total_cost);
 
-    Node *getM_father() const;
+    Node(const Place &place, const std::vector<Place> &m_left_places, float m_cost);
 
-    Place *getPlace() const;
+    const Place &getPlace() const;
 
-
-    float getM_branch_cost() const;
-
-    float getM_total_cost() const;
-
-    void add_to_total_cost(float cost);
+    float getM_cost() const;
 
     const std::vector<Place> &getM_left_places() const;
 
-    int remove_delivered_place(Place place);
+    void remove_delivered_place(Place place);
+
+    int computeSolution(float value);
 
 private:
-    Place *place;
-    Node *m_father;
-    std::vector<Place > m_left_places;
-    float m_branch_cost;
-    float m_total_cost;
+    Place place;
+    std::vector<Place> m_left_places;
+    float m_cost;
 };
 
 

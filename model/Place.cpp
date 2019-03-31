@@ -75,3 +75,8 @@ void Place::print() {
     std::cout << m_longitude << std::endl;
 
 }
+
+Place::Place(const std::string &m_name, const Location &m_loc, int m_num_ville, float m_latitude, float m_longitude,
+             char m_type, int m_besoin) : m_name(m_name), m_loc(m_loc), m_num_ville(m_num_ville),
+                                          m_latitude(m_latitude), m_longitude(m_longitude), m_type(m_type),
+                                          m_besoin(m_besoin) {}
