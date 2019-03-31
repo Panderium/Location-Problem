@@ -11,7 +11,7 @@
 using namespace std;
 
 int main() {
-    ifstream fichier("/home/panderium/Documents/UQAC/Algorithmique/Location-Problem/data.txt");
+    ifstream fichier("C:/Users/camil/Documents/Polytech/UQAC/trimestre 1/IA/TPFinal/Location-Problem/data.txt");
     Map m;
     Place p;
     if (fichier) {
@@ -61,7 +61,8 @@ int main() {
      m.set_strategy(new ApproximateStrategy());
      m.apply_methode();
      // p.Parser();
-
-    **/
+**/
+    m.setM_strategy(new ApproximateStrategy());
+    m.execut_strategy();
     return 0;
 }

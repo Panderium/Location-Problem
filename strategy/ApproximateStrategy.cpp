@@ -7,6 +7,17 @@
 
 
 void ApproximateStrategy::execute(std::vector<Place> places) {
+    srand(time(NULL));
+    setPopulation(generate_solutions(places));
+    for(int ite = 0;ite < getNb_iteration();ite++) {
+        std::vector<Solution> enfants;
+        for (int i = 0; i < getNb_pop(); i++) {
+            int k = rand_a_b(0, getNb_pop() - 1);
+            int j = rand_a_b(0, getNb_pop() - 1);
+            enfants.push_back(croisement(getPopulation()[k], getPopulation()[j]));
+        }
+        setPopulation(selection_solutions(enfants, getPopulation()));
+    }
 
 }
 
@@ -37,8 +48,14 @@ std::vector<Solution> ApproximateStrategy::generate_solutions(std::vector<Place>
 
 Solution ApproximateStrategy::tournoi(Solution s1, Solution s2) {
     if (calc_f_obj(s1) < calc_f_obj(s2)) {
+        if(calc_f_obj(s1)<calc_f_obj(getBest())) {
+            setBest(s1);
+        }
         return s1;
     } else {
+        if(calc_f_obj(s2)<calc_f_obj(getBest())) {
+            setBest(s2);
+        }
         return s2;
     }
 }
@@ -89,8 +106,7 @@ Solution ApproximateStrategy::croisement(Solution parent1, Solution parent2) {
     }
 }
 
-std::vector<Solution>
-ApproximateStrategy::selection_solutions(std::vector<Solution> parents, std::vector<Solution> enfants) {
+std::vector<Solution> ApproximateStrategy::selection_solutions(std::vector<Solution> parents, std::vector<Solution> enfants) {
     std::vector<Solution> new_pop;
     for (int i = 0; i < getNb_pop(); i++) {
         //tournoi(enfant, enfant);
@@ -159,6 +175,14 @@ Solution ApproximateStrategy::get_place_by_indice(int ind) {
 }
 
 ApproximateStrategy::ApproximateStrategy() : Strategy() {}
+
+const Solution &ApproximateStrategy::getBest() const {
+    return best;
+}
+
+void ApproximateStrategy::setBest(const Solution &best) {
+    ApproximateStrategy::best = best;
+}
 
 
 

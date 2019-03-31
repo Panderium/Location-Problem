@@ -81,6 +81,11 @@ private:
     float p_croissement = 0.5;
     int nb_pop = 10;
     int nb_iteration = 100;
+    Solution best;
+public:
+    const Solution &getBest() const;
+
+    void setBest(const Solution &best);
 };
 
 
