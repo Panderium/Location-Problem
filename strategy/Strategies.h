@@ -79,8 +79,8 @@ private:
     //Paramètres
     float p_mutation = 0.5;
     float p_croissement = 0.5;
-    int nb_pop = 10;
-    int nb_iteration = 100;
+    int nb_pop = 2;
+    int nb_iteration = 1;
     Solution best;
 public:
     const Solution &getBest() const;

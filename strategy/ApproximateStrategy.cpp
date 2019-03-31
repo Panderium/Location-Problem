@@ -8,7 +8,8 @@
 
 void ApproximateStrategy::execute(std::vector<Place> places) {
     srand(time(NULL));
-    setPopulation(generate_solutions(places));
+   setPopulation(generate_solutions(places));
+
     for(int ite = 0;ite < getNb_iteration();ite++) {
         std::vector<Solution> enfants;
         for (int i = 0; i < getNb_pop(); i++) {
@@ -18,7 +19,7 @@ void ApproximateStrategy::execute(std::vector<Place> places) {
         }
         setPopulation(selection_solutions(enfants, getPopulation()));
     }
-
+    std::cout << getBest().getSolution().getM_num_ville() << std::endl;
 }
 
 float ApproximateStrategy::calc_f_obj(Solution sol) {
@@ -31,19 +32,23 @@ float ApproximateStrategy::calc_f_obj(Solution sol) {
 
 std::vector<Solution> ApproximateStrategy::generate_solutions(std::vector<Place> m) {
     Solution tamp;
+    std::vector<Solution> pop;
     tamp.setPlaces(m);
     for (int i = 0; i < getNb_pop(); i++) {
+
         Solution sol;
         std::vector<Place> pla;
         int ind = rand_a_b(0, tamp.getPlaces().size());
         sol.setSolution(tamp.get_place_by_indice(ind));
         pla = tamp.getPlaces();
         sol.setPlaces(tamp.supp_place(sol.getSolution()));
-        for (int j = 0; j < sol.getPlaces().size(); i++) {
+        for (int j = 0; j < sol.getPlaces().size(); j++) {
             sol.add_distance(sol.getSolution().calculate_distance(sol.get_place_by_indice(j)));
         }
+        pop.push_back(sol);
     }
-    return std::vector<Solution>();
+    setBest(pop[0]);
+    return pop;
 }
 
 Solution ApproximateStrategy::tournoi(Solution s1, Solution s2) {
@@ -77,7 +82,7 @@ Solution ApproximateStrategy::croisement(Solution parent1, Solution parent2) {
         for (int j = 0; j < masque.size(); j++) {
             pl.push_back(parent1.get_place_by_indice(masque[j]));
         }
-        //TODO remplir avec le parent2
+        //remplir avec le parent2
         int taille = parent2.getPlaces().size() - masque.size() + 1;
         for (int i = 0; i < taille; i++) {
             if (res.is_in(pl, parent2.get_place_by_indice(i))) {

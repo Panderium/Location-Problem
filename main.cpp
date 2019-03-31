@@ -11,7 +11,7 @@
 using namespace std;
 
 int main() {
-    ifstream fichier("C:/Users/camil/Documents/Polytech/UQAC/trimestre 1/IA/TPFinal/Location-Problem/data.txt");
+    ifstream fichier("C:/Users/camil/Documents/Polytech/UQAC/trimestre 1/IA/TPFinal/Location-Problem/datatest.txt");
     Map m;
     Place p;
     if (fichier) {
