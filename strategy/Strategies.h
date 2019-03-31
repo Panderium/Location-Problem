@@ -35,40 +35,34 @@ public:
         return n;}
 
     float calc_f_obj(Solution sol);
-    std::vector<Solution> generate_solutions(Map m);
-
+    std::vector<Solution> generate_solutions(std::vector<Place> m);
     Solution tournoi(Solution s1, Solution s2);
-
     bool is_in(std::vector<int> tab ,int e);
-
     Solution mutation(Solution s);
-
     Solution croisement(Solution s1, Solution s2);
-
-    std::vector<Solution> selection_solutions(std::vector<Solution> population);
-
+    std::vector<Solution> selection_solutions(std::vector<Solution> parents, std::vector<Solution> enfants);
     void execute(std::vector<Solution> places) ;
-
 //setters et getters
     float getP_mutation() const;
-
     void setP_mutation(float p_mutation);
-
     float getP_croissement() const;
-
     void setP_croissement(float p_croissement);
-
     int getNb_iteration() const;
-
     void setNb_iteration(int nb_iteration);
-
     int getNb_pop() const;
-
     void setNb_pop(int nb_pop);
+    Solution get_place_by_indice(int ind);
 
 private:
+    std::vector<Solution> population;
     //Paramètres
     float p_mutation = 0.5;
+public:
+    const std::vector<Solution> &getPopulation() const;
+
+    void setPopulation(const std::vector<Solution> &population);
+
+private:
     float p_croissement = 0.5;
     int nb_pop = 10;
     int nb_iteration = 100;

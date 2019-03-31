@@ -9,7 +9,6 @@
 
 void ApproximateStrategy::execute(std::vector<Solution> places) {
 }
-
 float ApproximateStrategy::calc_f_obj(Solution sol) {
     float f_obj = 0;
     for(int i =0; i< sol.getDistance().size(); i++){
@@ -17,15 +16,16 @@ float ApproximateStrategy::calc_f_obj(Solution sol) {
     }
     return f_obj;
 }
-
-std::vector<Solution> ApproximateStrategy::generate_solutions(Map m) {
+std::vector<Solution> ApproximateStrategy::generate_solutions(std::vector<Place> m) {
+    Solution tamp ;
+    tamp.setPlaces(m);
     for (int i=0; i< getNb_pop(); i++) {
         Solution sol;
         std::vector<Place> pla;
-        int ind = rand_a_b(0, m.getM_places().size());
-        sol.setSolution(m.get_place_by_indice(ind));
-        pla = m.getM_places();
-        sol.setPlaces(m.supp_place(sol.getSolution()));
+        int ind = rand_a_b(0, tamp.getPlaces().size());
+        sol.setSolution(tamp.get_place_by_indice(ind));
+        pla = tamp.getPlaces();
+        sol.setPlaces(tamp.supp_place(sol.getSolution()));
         for(int j=0; j< sol.getPlaces().size();i++){
             sol.add_distance(sol.getSolution().calculate_distance(sol.get_place_by_indice(j)));
         }
@@ -84,6 +84,18 @@ Solution ApproximateStrategy::croisement(Solution parent1, Solution parent2) {
 
     }
 }
+std::vector<Solution> ApproximateStrategy::selection_solutions(std::vector<Solution> parents, std::vector<Solution> enfants) {
+    std::vector<Solution> new_pop;
+    for(int i = 0; i< getNb_pop();i++){
+        //tournoi(enfant, enfant);
+        new_pop.push_back(tournoi(enfants[i],enfants[i+1]));
+        //tournoi(parent, parent);
+        new_pop.push_back(tournoi(parents[i],parents[i+1]));
+        //add in new_pop;
+        i = i + 2;
+    }
+    return new_pop;
+}
 
 //getters et setters
 float ApproximateStrategy::getP_mutation() const {
@@ -117,4 +129,14 @@ int ApproximateStrategy::getNb_iteration() const {
 }
 void ApproximateStrategy::setNb_iteration(int nb_iteration) {
     ApproximateStrategy::nb_iteration = nb_iteration;
+}
+const std::vector<Solution> &ApproximateStrategy::getPopulation() const {
+    return population;
+}
+void ApproximateStrategy::setPopulation(const std::vector<Solution> &population) {
+    ApproximateStrategy::population = population;
+}
+Solution ApproximateStrategy::get_place_by_indice(int ind) {
+    std::vector<Solution> sol = getPopulation();
+    return sol[ind];
 }

@@ -28,7 +28,6 @@ public:
 
     void execut_strategy() const;
 
-    std::vector<Place> supp_place(Place pl);
 
     ~Map() = default;
 

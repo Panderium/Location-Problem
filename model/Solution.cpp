@@ -51,3 +51,13 @@ bool Solution::is_in(std::vector<Place> pls, Place pl) {
     return false;
 }
 
+
+std::vector<Place> Solution::supp_place(Place pl) {
+    std::vector<Place> res;
+    for(int i=0; i <getPlaces().size(); i++){
+        if(pl.getM_num_ville() != get_place_by_indice(i).getM_num_ville()){
+            res.push_back(get_place_by_indice(i));
+        }
+    }
+    return res;
+}

@@ -28,6 +28,8 @@ public:
 
     void add_distance(float f);
 
+    std::vector<Place> supp_place(Place pl);
+
     bool is_in(std::vector<Place> pls, Place pl);
 private:
     std::vector<float> distance;
