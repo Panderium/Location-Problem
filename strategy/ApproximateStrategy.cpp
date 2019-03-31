@@ -19,7 +19,7 @@ void ApproximateStrategy::execute(std::vector<Place> places) {
         }
         setPopulation(selection_solutions(enfants, getPopulation()));
     }
-    std::cout << getBest().getSolution().getM_num_ville() << std::endl;
+    std::cout <<  getBest().getSolution().getM_num_ville() << std::endl;
 }
 
 float ApproximateStrategy::calc_f_obj(Solution sol) {
