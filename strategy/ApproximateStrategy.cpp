@@ -13,13 +13,18 @@ void ApproximateStrategy::execute(std::vector<Place> places) {
     for(int ite = 0;ite < getNb_iteration();ite++) {
         std::vector<Solution> enfants;
         for (int i = 0; i < getNb_pop(); i++) {
+            int k = rand_a_b(0, 10);
+            if(k<getP_mutation()){
+                mutation(getPopulation()[i]);
+            }
+        }
+        for (int i = 0; i < getNb_pop(); i++) {
             int k = rand_a_b(0, getNb_pop() - 1);
             int j = rand_a_b(0, getNb_pop() - 1);
             enfants.push_back(croisement(getPopulation()[k], getPopulation()[j]));
         }
         setPopulation(selection_solutions(enfants, getPopulation()));
     }
-    std::cout <<  getBest().getSolution().getM_num_ville() << std::endl;
 }
 
 float ApproximateStrategy::calc_f_obj(Solution sol) {
@@ -48,6 +53,7 @@ std::vector<Solution> ApproximateStrategy::generate_solutions(std::vector<Place>
         pop.push_back(sol);
     }
     setBest(pop[0]);
+    std::cout <<  getBest().getSolution().getM_num_ville() << std::endl;
     return pop;
 }
 
@@ -82,8 +88,11 @@ Solution ApproximateStrategy::croisement(Solution parent1, Solution parent2) {
         for (int j = 0; j < masque.size(); j++) {
             pl.push_back(parent1.get_place_by_indice(masque[j]));
         }
+        pl.push_back(parent1.getSolution());
+        pl.push_back(parent2.getSolution());
+
         //remplir avec le parent2
-        int taille = parent2.getPlaces().size() - masque.size() + 1;
+        int taille = parent2.getPlaces().size() - masque.size() + 3;
         for (int i = 0; i < taille; i++) {
             if (res.is_in(pl, parent2.get_place_by_indice(i))) {
                 taille = taille + 1;
@@ -125,11 +134,11 @@ std::vector<Solution> ApproximateStrategy::selection_solutions(std::vector<Solut
 }
 
 //getters et setters
-float ApproximateStrategy::getP_mutation() const {
+int ApproximateStrategy::getP_mutation() const {
     return p_mutation;
 }
 
-void ApproximateStrategy::setP_mutation(float p_mutation) {
+void ApproximateStrategy::setP_mutation(int p_mutation) {
     ApproximateStrategy::p_mutation = p_mutation;
 }
 
@@ -187,6 +196,17 @@ const Solution &ApproximateStrategy::getBest() const {
 
 void ApproximateStrategy::setBest(const Solution &best) {
     ApproximateStrategy::best = best;
+}
+
+Solution ApproximateStrategy::mutation(Solution s) {
+    Solution sol;
+    int ind = rand_a_b(0,s.getPlaces().size());
+    sol.setSolution(s.get_place_by_indice(ind));
+    std::vector<Place> pl = s.getPlaces();
+    pl.push_back(s.getSolution());
+    sol.setPlaces(pl);
+    sol.supp_place(s.getSolution());
+    return sol;
 }
 
 

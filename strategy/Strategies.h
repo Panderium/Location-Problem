@@ -56,9 +56,9 @@ public:
     void setPopulation(const std::vector<Solution> &population);
 
 //setters et getters
-    float getP_mutation() const;
+    int getP_mutation() const;
 
-    void setP_mutation(float p_mutation);
+    void setP_mutation(int p_mutation);
 
     float getP_croissement() const;
 
@@ -77,8 +77,8 @@ public:
 private:
     std::vector<Solution> population;
     //Paramètres
-    float p_mutation = 0.5;
-    float p_croissement = 0.5;
+    int p_mutation = 5;
+    float p_croissement = 1;
     int nb_pop = 2;
     int nb_iteration = 10000;
     Solution best;
