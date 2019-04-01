@@ -7,6 +7,7 @@
 
 #include <vector>
 #include "Place.h"
+#include <algorithm>
 
 class Solution {
 public:
@@ -24,13 +25,14 @@ public:
 
     Place get_place_by_indice(int ind);
 
-    float & get_dist_by_indice(int ind);
+    float &get_dist_by_indice(int ind);
 
     void add_distance(float f);
 
-    std::vector<Place> supp_place(Place pl);
+    void supp_place(Place pl);
 
     bool is_in(std::vector<Place> pls, Place pl);
+
 private:
     std::vector<float> distance;
     std::vector<Place> places;

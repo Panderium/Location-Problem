@@ -13,13 +13,6 @@ void Place::setM_name(const std::string &m_name) {
     Place::m_name = m_name;
 }
 
-const Location &Place::getM_loc() const {
-    return m_loc;
-}
-
-void Place::setM_loc(const Location &m_loc) {
-    Place::m_loc = m_loc;
-}
 
 int Place::getM_num_ville() const {
     return m_num_ville;
@@ -76,7 +69,7 @@ void Place::print() {
 
 }
 
-Place::Place(const std::string &m_name, const Location &m_loc, int m_num_ville, float m_latitude, float m_longitude,
-             char m_type, int m_besoin) : m_name(m_name), m_loc(m_loc), m_num_ville(m_num_ville),
+Place::Place(const std::string &m_name, int m_num_ville, float m_latitude, float m_longitude,
+             char m_type, int m_besoin) : m_name(m_name), m_num_ville(m_num_ville),
                                           m_latitude(m_latitude), m_longitude(m_longitude), m_type(m_type),
                                           m_besoin(m_besoin) {}

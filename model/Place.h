@@ -7,26 +7,22 @@
 
 #include <string>
 #include <math.h>
-#include "../utils/Location.h"
 
 class Place {
 public:
 
     Place() = default;
 
-    Place(const std::string &m_name, const Location &m_loc, int m_num_ville, float m_latitude, float m_longitude,
+    Place(const std::string &m_name, int m_num_ville, float m_latitude, float m_longitude,
           char m_type, int m_besoin);
 
-    float calculate_distance(Place place) const ;
+    float calculate_distance(Place place) const;
 
 
     const std::string &getM_name() const;
 
     void setM_name(const std::string &m_name);
 
-    const Location &getM_loc() const;
-
-    void setM_loc(const Location &m_loc);
 
     int getM_num_ville() const;
 
@@ -49,13 +45,13 @@ public:
     void setM_besoin(int m_besoin);
 
     void print();
+
     bool operator==(const Place &rhs) const {
         return rhs.getM_num_ville() == getM_num_ville();
     }
 
 private:
     std::string m_name;
-    Location m_loc;
     int m_num_ville;
     float m_latitude;
     float m_longitude;

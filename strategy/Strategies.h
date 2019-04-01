@@ -50,7 +50,6 @@ public:
     std::vector<Solution> selection_solutions(std::vector<Solution> parents, std::vector<Solution> enfants);
 
 
-
     const std::vector<Solution> &getPopulation() const;
 
     void setPopulation(const std::vector<Solution> &population);
@@ -100,16 +99,12 @@ private:
 
     std::vector<Node *> m_frontier;
 
-    void build_bb_matrix(std::vector<Place> places);
 
     std::vector<Node *> init_frontier(std::vector<Place> places);
 
 
     int bb();
 
-    bool one_left_places_is_not_empty();
-
-    bool improve_bb(Node *pNode);
 };
 
 #endif //LOCATION_PROBLEM_STRATEGIES_H

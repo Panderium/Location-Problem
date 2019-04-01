@@ -52,12 +52,16 @@ bool Solution::is_in(std::vector<Place> pls, Place pl) {
 }
 
 
-std::vector<Place> Solution::supp_place(Place pl) {
-    std::vector<Place> res;
-    for(int i=0; i <getPlaces().size(); i++){
-        if(pl.getM_num_ville() != get_place_by_indice(i).getM_num_ville()){
-            res.push_back(get_place_by_indice(i));
-        }
-    }
-    return res;
+void Solution::supp_place(Place pl) {
+
+    //TODO peut être optimisé
+
+    places.erase(std::remove(places.begin(), places.end(), pl), places.end());
+    //std::vector<Place> res;
+    //for(int i=0; i <getPlaces().size(); i++){
+     //   if(pl.getM_num_ville() != get_place_by_indice(i).getM_num_ville()){
+      //      res.push_back(get_place_by_indice(i));
+      //  }
+    //}
+
 }
