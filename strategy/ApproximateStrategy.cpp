@@ -12,7 +12,7 @@ void ApproximateStrategy::execute(std::vector<Place> places) {
 
     for(int ite = 0;ite < getNb_iteration();ite++) {
         std::vector<Solution> enfants;
-        for (int i = 0; i < getNb_pop(); i++) {
+        for (int i = 0; i < getPopulation().size(); i++) {
             int k = rand_a_b(0, 10);
             if(k<getP_mutation()){
                 mutation(getPopulation()[i]);
@@ -25,12 +25,13 @@ void ApproximateStrategy::execute(std::vector<Place> places) {
         }
         setPopulation(selection_solutions(enfants, getPopulation()));
     }
+    std::cout <<  getBest().getSolution().getM_num_ville() << std::endl;
 }
 
 float ApproximateStrategy::calc_f_obj(Solution sol) {
     float f_obj = 0;
     for (int i = 0; i < sol.getDistance().size(); i++) {
-        f_obj += sol.get_dist_by_indice(i);
+        f_obj += sol.get_dist_by_indice(i)*sol.get_place_by_indice(i).getM_besoin();
     }
     return f_obj;
 }
@@ -53,7 +54,6 @@ std::vector<Solution> ApproximateStrategy::generate_solutions(std::vector<Place>
         pop.push_back(sol);
     }
     setBest(pop[0]);
-    std::cout <<  getBest().getSolution().getM_num_ville() << std::endl;
     return pop;
 }
 
