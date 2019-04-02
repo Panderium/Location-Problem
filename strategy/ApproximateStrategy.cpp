@@ -24,6 +24,9 @@ void ApproximateStrategy::execute(std::vector<Place> places) {
             enfants.push_back(croisement(getPopulation()[k], getPopulation()[j]));
         }
         setPopulation(selection_solutions(enfants, getPopulation()));
+        if (ite % 10 == 0) {
+            std::cout << "Itération numéro : " << ite << std::endl;
+        }
     }
     std::cout << getBest().getSolution().getM_num_ville() << std::endl;
 }
@@ -47,8 +50,8 @@ std::vector<Solution> ApproximateStrategy::generate_solutions(std::vector<Place>
         int ind = rand_a_b(0, tamp.getPlaces().size());
         sol.setSolution(tamp.get_place_by_indice(ind));
         pla = tamp.getPlaces();
-        tamp.supp_place(sol.getSolution());
         sol.setPlaces(tamp.getPlaces());
+        sol.supp_place(sol.getSolution());
         for (Place place : sol.getPlaces())
             sol.add_distance(sol.getSolution().calculate_distance(place));
         pop.push_back(sol);
@@ -76,23 +79,24 @@ Solution ApproximateStrategy::croisement(Solution parent1, Solution parent2) {
     std::vector<int> masque;
     int i = rand_a_b(1, parent1.getPlaces().size() - 1);
     std::vector<Place> pl;
-    if (parent1.getSolution() == parent2.getSolution()) {
+    if (parent1.getSolution().getM_num_ville() == parent2.getSolution().getM_num_ville()) {
         return parent1;
     } else {
         for (int j = 0; j < i; j++) {
             int n = rand_a_b(0, parent1.getPlaces().size());
-            if (is_in(masque, n)) {
+            if (!is_in(masque, n)) {
                 masque.push_back(n);
             }
         }
-        for (int j = 0; j < masque.size(); j++) {
-            pl.push_back(parent1.get_place_by_indice(masque[j]));
+        for (int j : masque) {
+            pl.push_back(parent1.get_place_by_indice(j));
         }
         pl.push_back(parent1.getSolution());
-        pl.push_back(parent2.getSolution());
+        if (!res.is_in(pl, parent2.getSolution()))
+            pl.push_back(parent2.getSolution());
 
         //remplir avec le parent2
-        int taille = parent2.getPlaces().size() - masque.size() + 3;
+        int taille = parent2.getPlaces().size() - pl.size();
         for (int i = 0; i < taille; i++) {
             if (res.is_in(pl, parent2.get_place_by_indice(i))) {
                 taille = taille + 1;
@@ -100,18 +104,22 @@ Solution ApproximateStrategy::croisement(Solution parent1, Solution parent2) {
                 pl.push_back(parent2.get_place_by_indice(i));
             }
         }
+        res.setPlaces(pl);
         //trouver la ville manquante
-        for (int i = taille; i < parent2.getPlaces().size(); i++) {
+        for (int i = 0; i < parent2.getPlaces().size(); i++) {
             if (!res.is_in(res.getPlaces(), parent2.get_place_by_indice(i))) {
                 res.setSolution(parent2.get_place_by_indice(i));
             }
+            if (!res.is_in(res.getPlaces(), parent1.get_place_by_indice(i))) {
+                res.setSolution(parent1.get_place_by_indice(i));
+            }
         }
         bool test = res.is_in(res.getPlaces(), res.getSolution());
-        res.setPlaces(pl);
+
         // calcul de la distance
-        for (int j = 0; j < res.getPlaces().size(); i++) {
-            res.add_distance(res.getSolution().calculate_distance(res.get_place_by_indice(j)));
-        }
+        for (Place place : res.getPlaces())
+            res.add_distance(res.getSolution().calculate_distance(place));
+
         if (test) {
             std::cout << "erreur dans le croisement" << std::endl;
         }
@@ -123,13 +131,31 @@ Solution ApproximateStrategy::croisement(Solution parent1, Solution parent2) {
 std::vector<Solution>
 ApproximateStrategy::selection_solutions(std::vector<Solution> parents, std::vector<Solution> enfants) {
     std::vector<Solution> new_pop;
-    for (int i = 0; i < getNb_pop(); i++) {
-        //tournoi(enfant, enfant);
-        new_pop.push_back(tournoi(enfants[i], enfants[i + 1]));
-        //tournoi(parent, parent);
-        new_pop.push_back(tournoi(parents[i], parents[i + 1]));
-        //add in new_pop;
-        i = i + 2;
+    while (new_pop.size() != getNb_pop()){
+
+        int k = 0, j = 0, rd;
+
+        rd = rand_a_b(0, 100);
+
+        if ((rd < p_croissement && enfants.size() > 2) || parents.size() <= 2) {
+            //tournoi(enfant, enfant);
+            do {
+                k = rand_a_b(0, enfants.size() - 1);
+                j = rand_a_b(0, enfants.size() - 1);
+            } while (k == j);
+            Solution childToKill = tournoi(enfants[k], enfants[j]);
+            enfants.erase(std::remove(enfants.begin(), enfants.end(), childToKill), enfants.end());
+            new_pop.push_back(childToKill);
+        } else if (parents.size() > 2 || enfants.size() <= 2) {
+            do {
+                k = rand_a_b(0, parents.size() - 1);
+                j = rand_a_b(0, parents.size() - 1);
+            } while (k == j);
+            //tournoi(parent, parent);
+            Solution parentToKill = tournoi(parents[k], parents[j]);
+            parents.erase(std::remove(parents.begin(), parents.end(), parentToKill), parents.end());
+            new_pop.push_back(parentToKill);
+        }
     }
     return new_pop;
 }

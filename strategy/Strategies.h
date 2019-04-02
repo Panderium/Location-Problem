@@ -77,8 +77,9 @@ private:
     std::vector<Solution> population;
     //Paramètres
     int p_mutation = 5;
-    float p_croissement = 1;
-    int nb_pop = 2;
+    //TODO change
+    float p_croissement = 10;
+    int nb_pop = 30;
     int nb_iteration = 1000;
     Solution best;
 public:

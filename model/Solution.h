@@ -33,6 +33,10 @@ public:
 
     bool is_in(std::vector<Place> pls, Place pl);
 
+    bool operator==(const Solution &rhs) const {
+        return rhs.getSolution().getM_num_ville() == getSolution().getM_num_ville() && rhs.getPlaces() == getPlaces();
+    }
+
 private:
     std::vector<float> distance;
     std::vector<Place> places;

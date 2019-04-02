@@ -43,8 +43,8 @@ void Solution::add_distance(float f) {
 }
 
 bool Solution::is_in(std::vector<Place> pls, Place pl) {
-    for(int i=0; i<pls.size();i++){
-        if(pls[i] == pl){
+    for (auto i : pls) {
+        if(i.getM_num_ville() == pl.getM_num_ville()){
             return true;
         }
     }
