@@ -28,7 +28,8 @@ void ApproximateStrategy::execute(std::vector<Place> places) {
             std::cout << "Itération numéro : " << ite << std::endl;
         }
     }
-    std::cout << getBest().getSolution().getM_num_ville() << std::endl;
+    std::cout << "Le quartier où sera implémenté l'école est le quartier numéro : " << getBest().getSolution().getM_num_ville() << std::endl;
+    std::cout << "La valeur de la fonction objective est : " << calc_f_obj(best) << std::endl;
 }
 
 float ApproximateStrategy::calc_f_obj(Solution sol) {

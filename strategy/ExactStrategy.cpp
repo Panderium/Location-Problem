@@ -35,6 +35,9 @@ int ExactStrategy::bb() {
             idxBestSolution = i;
         }
     }
-    std::cout << m_frontier[idxBestSolution]->getPlace().getM_num_ville() << std::endl;
+    std::cout << "Le quartier où sera implémenté l'école est le quartier numéro : "
+              << m_frontier[idxBestSolution]->getPlace().getM_num_ville() << std::endl;
+    std::cout << "La valeur de la fonction objective est : " << m_frontier[idxBestSolution]->getM_cost() << std::endl;
+
     return idxBestSolution;
 }
